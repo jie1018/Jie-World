@@ -1,0 +1,51 @@
+#include <iostream>
+#include<cstring>
+
+using namespace std;
+class Solution {
+public:
+    void replaceSpace(char *str,int length) {
+
+        if(str==NULL) return;
+        int count=0;
+        for(int i=0;i<length;++i)
+        {
+            if(str[i]==' ')
+            {
+                ++count;
+
+            }
+        }
+
+        int space=count*2;//表示需要挪动多少个空位
+        for(int i=length-1;i>=0;--i)
+        {
+                if(str[i]!=' ')
+                {
+                    str[i+space]=str[i];
+                }
+
+                else
+                {
+
+                    str[i+space]='0';
+                    str[i+space-1]='2';
+                    str[i+space-2]='%';
+                    space-=2;
+
+                }
+        }
+
+    }
+};
+int main()
+{
+
+    char str[]="We Are Happy";
+    int length=strlen(str);
+    cout<<str<<endl;
+    Solution s;
+    s.replaceSpace(str,length);
+    cout<<str<<endl;
+    return 0;
+}
