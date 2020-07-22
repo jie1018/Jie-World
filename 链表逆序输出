@@ -1,0 +1,57 @@
+vector<int> printListFromTailToHead(ListNode* head) {
+       vector<int> ArrayList;
+       while(head!=NULL)
+       {
+
+               ArrayList.insert(ArrayList.begin(),head->val);//每次都在头部位置插入当前元素
+               head = head->next;
+           }
+       return ArrayList;
+}
+
+
+
+
+//vector<int> printListFromTailToHead(ListNode* head) {
+//    stack<int> s;
+//    vector<int> vec;
+//    if(head==nullptr)  return vec;
+
+//    ListNode* p=head->next;
+//    ListNode* q=p->next;
+//    head->next=nullptr;
+//    while(p)
+//    {
+//        s.push(p->val);
+//        p->next=head;
+//        head=p;
+//        p=q;
+//        if(q->next) q=q->next;
+//    }
+
+//    while(!s.empty())
+//    {
+//      vec.push_back(s.top());
+//      s.pop();
+//    }
+//    return vec;
+
+//    }
+
+//递归
+//vector<int>  vec;
+//vector<int> printListFromTailToHead(ListNode* head)
+//{
+
+//    if(head==nullptr)
+//    {
+//        return vec;
+//    }
+
+
+
+
+//   printListFromTailToHead(head->next);
+//   vec.push_back(head->val);
+//   return vec;
+//}
