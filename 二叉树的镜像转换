@@ -1,0 +1,13 @@
+class Solution {
+public:
+    void Mirror(TreeNode *pRoot) {
+        if(!pRoot)  return;
+             TreeNode *p=pRoot->left;
+        pRoot->left=pRoot->right;
+        pRoot->right=p;
+       
+        Mirror(pRoot->left);
+        Mirror(pRoot->right);
+       
+    }
+};
