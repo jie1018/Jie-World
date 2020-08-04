@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+    {
+        bool flag=false;
+        //当两个树都不为空时，开始比较
+        if(pRoot1&&pRoot2)
+        {
+            //以根节点为开始
+            if(pRoot1->val==pRoot2->val)
+            {
+                flag=Tree1HasTree2(pRoot1,pRoot2);
+            }
+            //若根节点没有找到则分别以左右节点为根节点开始比较
+            if(!flag)
+            {
+               flag=HasSubtree(pRoot1->left,pRoot2); 
+            }
+            if(!flag)
+            {
+               flag=HasSubtree(pRoot1->right,pRoot2); 
+            }
+                
+            
+        }       
+        return flag;
+    }
+    public:
+        bool Tree1HasTree2(TreeNode* pNode1, TreeNode* pNode2)
+        {
+            if(!pNode2)  return true;
+            if(!pNode1)  return false;
+            if(pNode1->val!=pNode2->val)   return  false;
+            return (Tree1HasTree2(pNode1->left,pNode2->left)&&Tree1HasTree2(pNode1->right,pNode2->right));
+        }    
+    
+    
+    
+};
