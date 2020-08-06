@@ -1,0 +1,20 @@
+class Solution {
+public:
+    
+        bool Judge(vector<int> sequence,int left,int right)
+    {
+        if(left>=right) return true;
+        int j=right;
+        for(j;j>left&&sequence[j-1]>sequence[right];--j);
+        int i=j-1;
+        for(i;i>=left;--i)
+            if(sequence[i]>sequence[right]) return false;
+        return Judge(sequence,left,j-1)&&Judge(sequence,j,right-1);
+    }
+    
+    bool VerifySquenceOfBST(vector<int> sequence) {
+        
+        if(sequence.size()==0) return false;
+        return Judge(sequence,0, sequence.size()-1);
+    }
+};
