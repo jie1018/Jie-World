@@ -13,6 +13,7 @@ public:
             currentNode=newNode->next;
         }
        
+       
         //插入随机指针
         currentNode=pHead;
         RandomListNode *p;
