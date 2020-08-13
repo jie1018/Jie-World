@@ -1,0 +1,39 @@
+#include <iostream>
+#include<queue>
+#include<vector>
+
+using namespace std;
+
+
+int KthNum(vector<int> num,int k)
+{
+    int size=num.size();
+    if(size==0) return -1;
+    priority_queue<int,vector<int>,less<int>> q;
+    int i=0;
+    while(i<size)
+    {
+        if(q.size()<k)
+        {
+            q.push(num[i++]);
+        }
+        else
+        {
+          if(q.top()>num[i])
+          {
+              q.pop();
+              q.push(num[i]);
+          }
+          i++;
+        }
+    }
+
+    return q.top();
+}
+int main()
+{
+    vector<int> num={3,6,1,7,2,4,8,9};
+   int res= KthNum(num,4);
+    cout<<res;
+    return 0;
+}
