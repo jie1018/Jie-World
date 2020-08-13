@@ -1,0 +1,32 @@
+struct ListNode {
+     int val;
+     ListNode *next;
+     ListNode(int x) : val(x), next(NULL) {}
+};
+
+ListNode * ReverseMNListNode(ListNode *head,int m,int n)
+{
+    
+   if(head==nullptr) return head;
+   ListNode *first=new ListNode(0);//当给头节点前插入节点时
+  first->next=head;
+  ListNode *pre=head->next;
+  for(int i=1;i<m;++i)
+  {
+      if(pre)
+          pre=pre->next;
+  }
+   
+   ListNode *cur=pre->next;
+   for(int i=m;i<n;++i)
+   {
+       ListNode *curnext=cur->next;
+       cur->next=curnext->next;
+       curnext->next=pre->next;
+       pre->next=curnext;
+       
+   }
+   
+    
+   return first->next; 
+}
