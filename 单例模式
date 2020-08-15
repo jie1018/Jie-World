@@ -1,0 +1,57 @@
+//懒汉模式：故名思义，不到万不得已就不会去实例化类，也就是说在第一次用到类实例的时候才会去实例化；此种方法线程不安全，当有两个线程同时检测到p为null，两个线程会同时构造一个实例给p，就会发生严重的错误。
+//饿汉模式：饿了肯定要饥不择食，所以在单例类定义的时候就会进行实例化。线程安全
+
+//加锁的懒汉模式
+class Singleton
+{
+private:
+    Singleton()
+    {
+        pthread_mutex_init(&mutex,0);
+    };
+public:
+    static pthread_mutex_t mutex;
+    static Singleton* Getinstance();
+};
+pthread_mutex_t Singleton::mutex;
+Singleton* Singleton::Getinstance()
+{
+   pthread_mutex_lock(&mutex);
+   static Singleton obj;
+   pthread_mutex_unlock(&mutex);
+   return &obj;
+}
+int main()
+{
+     Singleton * p=Singleton::Getinstance();
+     Singleton * q=Singleton::Getinstance();
+     if(p==q)  cout<<"p==q"<<endl;
+     return 0;
+}
+
+#include <iostream>
+
+using namespace std;
+
+class Singleton
+{
+private:
+    Singleton(){};//构造函数私有
+    static Singleton *p;
+public:
+    static Singleton * Getinstance();
+};
+
+Singleton *Singleton::p=new Singleton();
+Singleton *Singleton::Getinstance()
+{
+    return p;
+}
+
+int main()
+{
+    Singleton * p=Singleton::Getinstance();
+    Singleton * q=Singleton::Getinstance();
+    if(p==q)  cout<<"p=q"<<endl;
+    return 0;
+}
