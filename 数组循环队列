@@ -1,0 +1,68 @@
+#include <iostream>
+
+using namespace std;
+
+const int maxsize=100;
+
+class CirQueue
+{
+
+
+private:
+    int front;
+    int rear;
+    int a[maxsize];
+public:
+    CirQueue()
+    {
+        front=rear=0;
+    }
+    void EnQueue(int x)
+    {
+        if(IsFull())  return;
+        a[rear]=x;//入队
+        rear=(rear+1)%maxsize;//移动队尾指针到下一个节点
+
+    }
+    int DeQueue()
+    {
+        if(IsEmpty())
+        {
+            return -1;
+        }
+
+        else
+        {
+            int b=a[front];
+            front=(front+1)%maxsize;
+            return b;
+
+        }
+
+
+
+    }
+    int GetQueue()
+    {
+        if(IsEmpty()) return -1;
+        else
+            return a[front];
+    }
+
+    bool IsFull()
+    {
+        if((rear+1)%maxsize==front)
+            return true;
+        else
+            return false;
+
+    }
+    bool IsEmpty()
+    {
+        if(rear==front)
+            return true;
+        else
+            return false;
+    }
+
+};
