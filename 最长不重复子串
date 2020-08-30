@@ -1,0 +1,20 @@
+int LongestString(string s)
+{
+int mem[256]={0};
+int ans=0;
+int start=0;
+for(int i=0;i<length;i++)
+{
+  if(mem[s[i]]==0||mem[s[i]]<start)//若没有出现，或者已经开始重新计数
+  {
+     ams=max(ans,i-start+1);
+  }
+  else
+  {
+  start=mem[s[i]];//若重复出现，则从下一个位置开始计数
+  }
+  
+  m[s[i]]=i+1;
+}
+return ans;
+}
